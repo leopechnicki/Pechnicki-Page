@@ -1,0 +1,875 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pechnicki</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Optional redirect for www to root domain -->
+    <script>
+    if (location.hostname === "www.pechnicki.com") {
+        window.location.href = "https://pechnicki.com";
+    }
+    </script>
+    
+    <style>
+        :root {
+            --primary-bg: #0a0a0a;
+            --secondary-bg: #111111;
+            --glass-bg: rgba(255, 255, 255, 0.08);
+            --glass-border: rgba(255, 255, 255, 0.12);
+            --accent-purple: #8b5cf6;
+            --accent-blue: #3b82f6;
+            --accent-cyan: #06b6d4;
+            --text-primary: #ffffff;
+            --text-secondary: #a1a1aa;
+            --text-muted: #71717a;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--primary-bg);
+            background-image: 
+                radial-gradient(circle at 20% 50%, rgba(139, 92, 246, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(59, 130, 246, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 40% 80%, rgba(6, 182, 212, 0.1) 0%, transparent 50%);
+            min-height: 100vh;
+            padding: 2rem;
+            color: var(--text-primary);
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg"><defs><pattern id="grain" patternUnits="userSpaceOnUse" width="100" height="100"><circle cx="25" cy="25" r="1" fill="%23ffffff" opacity="0.05"/><circle cx="75" cy="75" r="1" fill="%23ffffff" opacity="0.03"/><circle cx="50" cy="10" r="0.5" fill="%23ffffff" opacity="0.04"/><circle cx="10" cy="60" r="0.5" fill="%23ffffff" opacity="0.06"/></pattern></defs><rect width="100%" height="100%" fill="url(%23grain)"/></svg>');
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+        }
+
+        .main-title {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: clamp(3rem, 8vw, 8rem);
+            font-weight: 900;
+            text-align: center;
+            background: linear-gradient(135deg, var(--accent-purple), var(--accent-blue), var(--accent-cyan));
+            background-size: 200% 200%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 4rem;
+            padding: 2rem 0;
+            letter-spacing: -0.02em;
+            animation: gradientShift 8s ease-in-out infinite;
+            text-shadow: 0 0 40px rgba(139, 92, 246, 0.3);
+            position: relative;
+        }
+
+        .main-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--accent-purple), var(--accent-cyan));
+            border-radius: 2px;
+            opacity: 0.6;
+        }
+
+        @keyframes gradientShift {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        .bento-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .category-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: 24px;
+            padding: 2.5rem;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+            min-height: 200px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .category-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, 
+                rgba(139, 92, 246, 0.1) 0%, 
+                rgba(59, 130, 246, 0.1) 50%, 
+                rgba(6, 182, 212, 0.1) 100%);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            border-radius: 24px;
+        }
+
+        .category-card:hover::before {
+            opacity: 1;
+        }
+
+        .category-card:hover {
+            transform: translateY(-8px) scale(1.02);
+            border-color: rgba(139, 92, 246, 0.4);
+            box-shadow: 
+                0 25px 50px rgba(0, 0, 0, 0.4),
+                0 0 100px rgba(139, 92, 246, 0.2);
+        }
+
+        .category-card h2 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 2.5rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--text-primary), var(--text-secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 1rem;
+            position: relative;
+            z-index: 2;
+            letter-spacing: -0.01em;
+        }
+
+        .category-description {
+            color: var(--text-secondary);
+            font-size: 1rem;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .professionals-container {
+            margin-top: 2rem;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            z-index: 2;
+        }
+
+        .professionals-container.expanded {
+            max-height: 2000px;
+        }
+
+        .professional-name {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            padding: 1.5rem;
+            margin: 1rem 0;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            font-weight: 600;
+            color: var(--text-primary);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .professional-name::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+            transition: left 0.6s ease;
+        }
+
+        .professional-name:hover::before {
+            left: 100%;
+        }
+
+        .professional-name:hover {
+            background: rgba(255, 255, 255, 0.08);
+            border-color: rgba(139, 92, 246, 0.4);
+            transform: translateX(8px);
+            color: var(--accent-purple);
+        }
+
+        .professional-details {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            background: rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(15px);
+            border-radius: 20px;
+            margin-top: 1rem;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .professional-details.expanded {
+            max-height: 600px;
+            padding: 2rem;
+        }
+
+        .professional-info {
+            display: flex;
+            gap: 2rem;
+            align-items: flex-start;
+        }
+
+        .professional-photo {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid;
+            border-image: linear-gradient(135deg, var(--accent-purple), var(--accent-cyan)) 1;
+            flex-shrink: 0;
+            box-shadow: 0 8px 32px rgba(139, 92, 246, 0.3);
+        }
+
+        .professional-text {
+            flex: 1;
+        }
+
+        .professional-text h4 {
+            font-family: 'Space Grotesk', sans-serif;
+            color: var(--accent-purple);
+            margin-bottom: 0.8rem;
+            font-size: 1.4rem;
+            font-weight: 600;
+        }
+
+        .professional-text p {
+            margin-bottom: 1rem;
+            color: var(--text-secondary);
+            line-height: 1.6;
+            font-size: 1rem;
+        }
+
+        .skills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem;
+            margin-top: 1.5rem;
+        }
+
+        .skill-tag {
+            background: linear-gradient(135deg, var(--accent-purple), var(--accent-blue));
+            color: white;
+            padding: 0.6rem 1.2rem;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(139, 92, 246, 0.2);
+        }
+
+        .skill-tag:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(139, 92, 246, 0.4);
+        }
+
+        .floating-shapes {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .shape {
+            position: absolute;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--accent-purple), var(--accent-cyan));
+            opacity: 0.1;
+            animation: float 20s infinite linear;
+        }
+
+        .shape:nth-child(1) {
+            width: 80px;
+            height: 80px;
+            top: 20%;
+            left: 10%;
+            animation-delay: 0s;
+        }
+
+        .shape:nth-child(2) {
+            width: 120px;
+            height: 120px;
+            top: 60%;
+            right: 10%;
+            animation-delay: -5s;
+        }
+
+        .shape:nth-child(3) {
+            width: 60px;
+            height: 60px;
+            bottom: 20%;
+            left: 20%;
+            animation-delay: -10s;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0px) rotate(0deg); }
+            33% { transform: translateY(-20px) rotate(120deg); }
+            66% { transform: translateY(10px) rotate(240deg); }
+            100% { transform: translateY(0px) rotate(360deg); }
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding: 1rem;
+            }
+
+            .main-title {
+                font-size: clamp(2rem, 12vw, 4rem);
+                margin-bottom: 2rem;
+            }
+
+            .bento-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            .category-card {
+                padding: 2rem;
+                min-height: 150px;
+            }
+
+            .category-card h2 {
+                font-size: 2rem;
+            }
+
+            .professional-info {
+                flex-direction: column;
+                text-align: center;
+                gap: 1rem;
+            }
+
+            .professional-photo {
+                align-self: center;
+                width: 80px;
+                height: 80px;
+            }
+
+            .skills {
+                justify-content: center;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .category-card {
+                padding: 1.5rem;
+            }
+            
+            .category-card h2 {
+                font-size: 1.8rem;
+            }
+
+            .professional-details.expanded {
+                padding: 1.5rem;
+            }
+        }
+
+        /* Dark mode toggle (always dark for this design) */
+        .theme-indicator {
+            position: fixed;
+            top: 2rem;
+            right: 2rem;
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: 50px;
+            padding: 0.8rem 1.5rem;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            font-weight: 500;
+            z-index: 10;
+        }
+
+        /* Fullscreen Professional Modal */
+        .professional-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: rgba(0, 0, 0, 0.95);
+            backdrop-filter: blur(20px);
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            padding: 2rem;
+        }
+
+        .professional-modal.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .modal-content {
+            background: var(--glass-bg);
+            backdrop-filter: blur(30px);
+            border: 1px solid var(--glass-border);
+            border-radius: 32px;
+            padding: 3rem;
+            max-width: 800px;
+            width: 100%;
+            max-height: 90vh;
+            overflow-y: auto;
+            position: relative;
+            transform: scale(0.9) translateY(50px);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 50px 100px rgba(0, 0, 0, 0.5);
+        }
+
+        .professional-modal.active .modal-content {
+            transform: scale(1) translateY(0);
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 2rem;
+            right: 2rem;
+            width: 50px;
+            height: 50px;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            color: var(--text-primary);
+            font-size: 1.5rem;
+            font-weight: 300;
+        }
+
+        .close-modal:hover {
+            background: rgba(255, 255, 255, 0.2);
+            border-color: rgba(139, 92, 246, 0.5);
+            transform: rotate(90deg);
+        }
+
+        .modal-professional-info {
+            display: flex;
+            gap: 3rem;
+            align-items: flex-start;
+            margin-bottom: 3rem;
+        }
+
+        .modal-professional-photo {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid;
+            border-image: linear-gradient(135deg, var(--accent-purple), var(--accent-cyan)) 1;
+            flex-shrink: 0;
+            box-shadow: 0 20px 40px rgba(139, 92, 246, 0.4);
+        }
+
+        .modal-professional-text {
+            flex: 1;
+        }
+
+        .modal-professional-text h2 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 3rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--accent-purple), var(--accent-cyan));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+
+        .modal-professional-role {
+            font-size: 1.5rem;
+            color: var(--accent-blue);
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+        }
+
+        .modal-professional-graduation {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+            line-height: 1.6;
+        }
+
+        .modal-skills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .modal-skill-tag {
+            background: linear-gradient(135deg, var(--accent-purple), var(--accent-blue));
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            font-size: 1rem;
+            font-weight: 600;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 25px rgba(139, 92, 246, 0.3);
+        }
+
+        .modal-skill-tag:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 35px rgba(139, 92, 246, 0.5);
+        }
+
+        .modal-divider {
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--accent-purple), var(--accent-cyan), transparent);
+            margin: 2rem 0;
+            border-radius: 1px;
+        }
+
+        .modal-description {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+            line-height: 1.8;
+            text-align: center;
+            font-style: italic;
+        }
+
+        @media (max-width: 768px) {
+            .professional-modal {
+                padding: 1rem;
+            }
+
+            .modal-content {
+                padding: 2rem;
+                border-radius: 24px;
+                max-height: 95vh;
+            }
+
+            .modal-professional-info {
+                flex-direction: column;
+                text-align: center;
+                gap: 2rem;
+            }
+
+            .modal-professional-photo {
+                width: 150px;
+                height: 150px;
+                align-self: center;
+            }
+
+            .modal-professional-text h2 {
+                font-size: 2.5rem;
+            }
+
+            .modal-professional-role {
+                font-size: 1.3rem;
+            }
+
+            .modal-professional-graduation {
+                font-size: 1.1rem;
+            }
+
+            .modal-skills {
+                justify-content: center;
+            }
+
+            .close-modal {
+                width: 40px;
+                height: 40px;
+                top: 1.5rem;
+                right: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="floating-shapes">
+        <div class="shape"></div>
+        <div class="shape"></div>
+        <div class="shape"></div>
+    </div>
+
+    <div class="theme-indicator">
+        🌙 Dark Mode
+    </div>
+
+    <div class="container">
+        <h1 class="main-title">Pechnicki</h1>
+        
+        <div class="bento-grid">
+            <div class="category-card" data-category="Saúde">
+                <div>
+                    <h2>Saúde</h2>
+                    <p class="category-description">Profissionais dedicados ao bem-estar físico e reabilitação</p>
+                </div>
+                <div id="Saúde" class="professionals-container"></div>
+            </div>
+            
+            <div class="category-card" data-category="Engenharia">
+                <div>
+                    <h2>Engenharia</h2>
+                    <p class="category-description">Especialistas em soluções técnicas e segurança industrial</p>
+                </div>
+                <div id="Engenharia" class="professionals-container"></div>
+            </div>
+            
+            <div class="category-card" data-category="Tecnologia">
+                <div>
+                    <h2>Tecnologia</h2>
+                    <p class="category-description">Desenvolvedores e especialistas em soluções digitais</p>
+                </div>
+                <div id="Tecnologia" class="professionals-container"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Professional Modal -->
+    <div id="professionalModal" class="professional-modal">
+        <div class="modal-content">
+            <button class="close-modal" onclick="closeProfessionalModal()">×</button>
+            <div id="modalContent"></div>
+        </div>
+    </div>
+
+    <script>
+        const categories = {
+            'Saúde': [
+                {
+                    name: 'Leticia Pechnicki',
+                    role: 'Educadora Física',
+                    graduation: 'Bacharel em Educação Física',
+                    skills: ['Treinamento funcional', 'Condicionamento físico', 'Wellness'],
+                    photo: 'https://via.placeholder.com/150/8b5cf6/FFFFFF?text=LP'
+                },
+                {
+                    name: 'Luisa Pechnicki',
+                    role: 'Fisioterapeuta',
+                    graduation: 'Fisioterapia pela UFPR',
+                    skills: ['Reabilitação', 'Pilates clínico', 'Terapia manual'],
+                    photo: 'https://via.placeholder.com/150/3b82f6/FFFFFF?text=LuP'
+                }
+            ],
+            'Engenharia': [
+                {
+                    name: 'Elaine Pechnicki',
+                    role: 'Engenheira Química',
+                    graduation: 'Engenharia Química na UTFPR',
+                    skills: ['Processos industriais', 'Segurança química', 'Controle de qualidade'],
+                    photo: 'https://via.placeholder.com/150/06b6d4/FFFFFF?text=EP'
+                },
+                {
+                    name: 'Ian Pechnicki',
+                    role: 'Eng. Florestal e Perito',
+                    graduation: 'Engenharia Florestal',
+                    skills: ['Perícia ambiental', 'Topografia', 'Gestão florestal'],
+                    photo: 'https://via.placeholder.com/150/8b5cf6/FFFFFF?text=IP'
+                },
+                {
+                    name: 'Jhessica Pechnicki',
+                    role: 'Segurança do Trabalho',
+                    graduation: 'Técnica em Segurança do Trabalho',
+                    skills: ['Normas regulamentadoras', 'Riscos ocupacionais', 'Prevenção'],
+                    photo: 'https://via.placeholder.com/150/3b82f6/FFFFFF?text=JP'
+                }
+            ],
+            'Tecnologia': [
+                {
+                    name: 'Yuri Pechnicki',
+                    role: 'Desenvolvedor em C e DevOps',
+                    graduation: 'Ciência da Computação',
+                    skills: ['C/C++', 'Docker', 'CI/CD', 'Linux'],
+                    photo: 'https://via.placeholder.com/150/06b6d4/FFFFFF?text=YP'
+                },
+                {
+                    name: 'Leonardo Pechnicki',
+                    role: 'Desenvolvedor Fullstack',
+                    graduation: 'Sistemas de Informação',
+                    skills: ['Java', 'Spring Boot', 'React', 'Kubernetes', 'AWS'],
+                    photo: 'https://via.placeholder.com/150/8b5cf6/FFFFFF?text=LeP'
+                }
+            ]
+        };
+
+        // Add event listeners to category cards
+        document.querySelectorAll('.category-card').forEach(card => {
+            card.addEventListener('click', function(e) {
+                // Don't trigger if clicking on professional details
+                if (e.target.closest('.professionals-container')) return;
+                
+                const category = this.dataset.category;
+                const container = document.getElementById(category);
+                
+                // Toggle the container
+                if (container.classList.contains('expanded')) {
+                    container.classList.remove('expanded');
+                    setTimeout(() => {
+                        container.innerHTML = '';
+                    }, 300);
+                } else {
+                    // Close other containers first
+                    document.querySelectorAll('.professionals-container').forEach(c => {
+                        c.classList.remove('expanded');
+                        setTimeout(() => {
+                            if (!c.classList.contains('expanded')) {
+                                c.innerHTML = '';
+                            }
+                        }, 300);
+                    });
+                    
+                    // Populate and expand this container
+                    setTimeout(() => {
+                        populateCategory(category);
+                        container.classList.add('expanded');
+                    }, 150);
+                }
+            });
+        });
+
+        function populateCategory(category) {
+            const container = document.getElementById(category);
+            const professionals = categories[category];
+            container.innerHTML = '';
+            
+            professionals.forEach((professional, index) => {
+                const professionalDiv = document.createElement('div');
+                professionalDiv.className = 'professional-item';
+                professionalDiv.style.animationDelay = `${index * 0.1}s`;
+                
+                const nameDiv = document.createElement('div');
+                nameDiv.className = 'professional-name';
+                nameDiv.textContent = professional.name;
+                nameDiv.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    toggleProfessionalDetails(this, professional);
+                });
+                
+                const detailsDiv = document.createElement('div');
+                detailsDiv.className = 'professional-details';
+                
+                professionalDiv.appendChild(nameDiv);
+                professionalDiv.appendChild(detailsDiv);
+                container.appendChild(professionalDiv);
+            });
+        }
+
+        function toggleProfessionalDetails(nameElement, professional) {
+            // Open fullscreen modal instead of inline details
+            openProfessionalModal(professional);
+        }
+
+        function openProfessionalModal(professional) {
+            const modal = document.getElementById('professionalModal');
+            const modalContent = document.getElementById('modalContent');
+            
+            const skillsHtml = professional.skills.map(skill => 
+                `<span class="modal-skill-tag">${skill}</span>`
+            ).join('');
+            
+            modalContent.innerHTML = `
+                <div class="modal-professional-info">
+                    <img src="${professional.photo}" alt="${professional.name}" class="modal-professional-photo">
+                    <div class="modal-professional-text">
+                        <h2>${professional.name}</h2>
+                        <div class="modal-professional-role">${professional.role}</div>
+                        <div class="modal-professional-graduation">
+                            <strong>Formação:</strong> ${professional.graduation}
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-divider"></div>
+                <div class="modal-skills">
+                    ${skillsHtml}
+                </div>
+                <div class="modal-divider"></div>
+                <div class="modal-description">
+                    Profissional experiente e dedicado, sempre em busca da excelência em sua área de atuação.
+                </div>
+            `;
+            
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeProfessionalModal() {
+            const modal = document.getElementById('professionalModal');
+            modal.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+
+        // Close modal on escape key or background click
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                closeProfessionalModal();
+            }
+        });
+
+        document.getElementById('professionalModal').addEventListener('click', (e) => {
+            if (e.target.id === 'professionalModal') {
+                closeProfessionalModal();
+            }
+        });
+
+        // Add subtle parallax effect for floating shapes
+        document.addEventListener('mousemove', (e) => {
+            const shapes = document.querySelectorAll('.shape');
+            const mouseX = e.clientX / window.innerWidth;
+            const mouseY = e.clientY / window.innerHeight;
+            
+            shapes.forEach((shape, index) => {
+                const speed = (index + 1) * 0.5;
+                const x = (mouseX - 0.5) * speed * 20;
+                const y = (mouseY - 0.5) * speed * 20;
+                shape.style.transform += ` translate(${x}px, ${y}px)`;
+            });
+        });
+    </script>
+</body>
+</html>
