@@ -4,30 +4,57 @@ if (location.hostname === "www.pechnicki.com") {
 
 // Enhanced professional data with better descriptions
 const categories = {
+    'Ciencia': [
+        {
+            name: 'Laiane Lemos Pechnicki',
+            role: 'Analista de P&D – Biologia Molecular & Inovação',
+            graduation: 'Mestre em Bioquímica (UFPR) • Especialista em Microbiologia (Positivo)',
+            skills: [
+                'Microbiologia Clínica, Ambiental e de Alimentos',
+                'Desenvolvimento de P&D em biologia molecular',
+                'Segurança laboratorial',
+                'Inovação aplicada',
+                'Ciência com foco em qualidade e sustentabilidade'
+            ],
+            photo: 'https://media.licdn.com/dms/image/v2/D4D03AQGQ-6UueRvidQ/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1704226685137?e=1756339200&v=beta&t=7VKvbI-589VsOAA_hyPg8WjeetvJoNSEwQoDvTbVqaw',
+            description: 'Com sólido background em biologia molecular e microbiologia aplicada, Laiane atua no desenvolvimento de projetos de inovação em P&D com foco em segurança laboratorial e resultados sustentáveis.',
+            contact: {
+                linkedin: 'https://www.linkedin.com/in/laiane-lemos-pechnicki'
+            }
+        }
+    ],
     'Saúde': [
         {
-            name: 'Leticia Pechnicki',
-            role: 'Educadora Física',
-            graduation: 'Bacharel em Educação Física',
-            skills: ['Treinamento funcional', 'Condicionamento físico', 'Wellness', 'Prescrição de exercícios', 'Avaliação física'],
+            name: 'Letícia Pechnicki dos Santos',
+            role: 'Personal Trainer • Mestre em Atividade Física e Saúde',
+            graduation: 'Mestrado (UTFPR) • Especialização em Fisiologia do Exercício (UFPR)',
+            skills: [
+                'Prescrição de exercícios personalizados',
+                'Promoção de saúde e qualidade de vida',
+                'Treinamento voltado à prevenção de lesões',
+                'Conhecimento avançado em fisiologia do exercício',
+                'Atendimento individual e grupos'
+            ],
             photo: 'https://media.licdn.com/dms/image/v2/D4D03AQF5AHC-gsl6mA/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1674674337169?e=1756339200&v=beta&t=hD6rmdWnixpqYkxGxOTDgNntEI8lwPRNpM2E-rgv_90',
-            description: 'Especialista em transformar vidas através do movimento. Com abordagem personalizada e científica, desenvolve programas de treinamento que respeitam as individualidades e maximizam resultados duradouros.',
+            description: 'Profissional com mestrado em Atividade Física e Saúde, especializada em fisiologia do exercício, dedicada à promoção da saúde e bem-estar por meio de programas de treinamento personalizados.',
             contact: {
-                email: 'leticia@pechnicki.com',
-                phone: '+55 (41) 99999-0001',
                 linkedin: 'https://www.linkedin.com/in/leticia-pechnicki/'
             }
         },
         {
             name: 'Luisa Pechnicki',
-            role: 'Fisioterapeuta',
-            graduation: 'Fisioterapia pela UFPR',
-            skills: ['Reabilitação neurológica', 'Pilates clínico', 'Terapia manual', 'RPG', 'Dry needling'],
+            role: 'Fisioterapeuta • Reabilitação Neurológica',
+            graduation: 'Fisioterapia (UFPR) • Pós-graduação em Neurologia (Einstein)',
+            skills: [
+                'Reabilitação neurológica',
+                'Atendimento domiciliar e ambulatorial',
+                'Tratamento de AVC e doenças neuromusculares',
+                'Terapia manual e funcional',
+                'Promoção de independência e qualidade de vida'
+            ],
             photo: 'https://media.licdn.com/dms/image/v2/C4D03AQHZDEoNlDTNow/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1517566325605?e=1756339200&v=beta&t=FK7NXZN4wJ9d__SKfEeYdfYmUOYHQZ4PXgMJv7e4MhM',
-            description: 'Fisioterapeuta apaixonada pela reabilitação integral. Combina técnicas clássicas com métodos inovadores para proporcionar recuperação eficaz e melhoria da qualidade de vida dos pacientes.',
+            description: 'Fisioterapeuta com foco em neurologia e reabilitação funcional. Atua com dedicação na recuperação de pacientes com lesões neurológicas, promovendo autonomia e qualidade de vida através de uma abordagem humanizada e técnica.',
             contact: {
-                email: 'luisa@pechnicki.com',
-                phone: '+55 (41) 99999-0002',
                 linkedin: 'https://www.linkedin.com/in/luisa-pechnicki/'
             }
         }
@@ -35,27 +62,34 @@ const categories = {
     'Engenharia': [
         {
             name: 'Elaine Pechnicki',
-            role: 'Engenheira Química',
-            graduation: 'Engenharia Química na UTFPR',
-            skills: ['Processos industriais', 'Controle de qualidade', 'Segurança química', 'Otimização de processos', 'Sustentabilidade'],
+            role: 'Engenheira Química • Qualidade e Processos',
+            graduation: 'Engenharia Química (UTFPR)',
+            skills: [
+                'Controle de qualidade',
+                'Boas práticas de fabricação (BPF)',
+                'Gestão de processos químicos',
+                'Documentação técnica e regulatória',
+                'Normas e segurança industrial'
+            ],
             photo: 'https://media.licdn.com/dms/image/v2/D4D03AQHf-6L9tveu5A/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1731028881338?e=1756339200&v=beta&t=xEieq24wSFfe8omtZYfDy08OTcUOnDfzTaccUVC5INA',
-            description: 'Engenheira química com expertise em otimização de processos industriais. Focada em soluções sustentáveis que maximizam eficiência operacional mantendo os mais altos padrões de segurança.',
+            description: 'Engenheira química com sólida experiência em controle de qualidade e boas práticas na indústria química e cosmética. Atua com foco em segurança, normatização e excelência nos processos.',
             contact: {
-                email: 'elaine@pechnicki.com',
-                phone: '+55 (41) 99999-0003',
                 linkedin: 'https://www.linkedin.com/in/elaine-p-b95bb482/'
             }
         },
         {
-            name: 'Ian Pechnicki',
-            role: 'Eng. Florestal e Perito',
-            graduation: 'Engenharia Florestal',
-            skills: ['Perícia ambiental', 'Topografia', 'Gestão florestal', 'Licenciamento ambiental', 'Geoprocessamento'],
+            name: 'Ian Suguimati Pechnicki',
+            role: 'Engenheiro Florestal • Direito Ambiental',
+            graduation: 'Engenharia Florestal e Especialização em Direito Ambiental (UFPR)',
+            skills: [
+                'Auditoria e perícia ambiental',
+                'Conformidade regulatória',
+                'Consultoria Técnica Ambiental',
+                'Licenciamento e pareceres técnicos'
+            ],
             photo: 'https://media.licdn.com/dms/image/v2/D4D03AQH4-MxIyvWVaA/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1724963709041?e=1756339200&v=beta&t=r63JuWZ0x3rFsI6C4NSNTNoWhwIrvp9J9EydXYrhVUU',
-            description: 'Engenheiro florestal especializado em perícias ambientais e gestão sustentável de recursos naturais. Combina conhecimento técnico com visão de preservação para o futuro.',
+            description: 'Engenheiro florestal formado pela UFPR, com especialização em direito ambiental e vasta atuação como perito judicial em casos ambientais.',
             contact: {
-                email: 'ian@pechnicki.com',
-                phone: '+55 (41) 99999-0004',
                 linkedin: 'https://www.linkedin.com/in/iansuguimati/'
             }
         },
@@ -76,23 +110,30 @@ const categories = {
     'Tecnologia': [
         {
             name: 'Yuri Pechnicki',
-            role: 'Desenvolvedor C e DevOps',
-            graduation: 'Ciência da Computação',
-            skills: ['C/C++', 'Docker', 'Kubernetes', 'CI/CD', 'Linux', 'Performance Optimization'],
+            role: 'DevOps Engineer • WEBJUMP',
+            graduation: 'Graduação (UFPR), conclusão prevista julho de 2025',
+            skills: [
+                'Kubernetes', 'Terraform', 'AWS', 'CI/CD', 'Jenkins',
+                'Ansible', 'Shell script', 'React.js backend integration'
+            ],
             photo: 'https://images.contactout.com/profiles/a64981e9731cab03513c58e857640b17',
-            description: 'Desenvolvedor especializado em sistemas de alto desempenho e infraestrutura cloud. Arquiteta soluções robustas e escaláveis que impulsionam o crescimento de negócios modernos.',
+            description: 'Engineer DevOps com sólida atuação em automação, CI/CD e infraestrutura em nuvem, trabalhando com empresas como WEBJUMP, Porto e Wipro.',
             contact: {
-                email: 'yuri@pechnicki.com',
+                email: 'yuri@bit.ly',
                 contactout: 'https://contactout.com/yuri-pechnicki-97074'
             }
         },
         {
             name: 'Leonardo Pechnicki',
-            role: 'Desenvolvedor Fullstack',
-            graduation: 'Sistemas de Informação',
-            skills: ['Java', 'Spring Boot', 'React', 'TypeScript', 'AWS', 'Microservices'],
+            role: 'Profissional de TI na EPAM Systems',
+            graduation: 'Formação técnica (dados não públicos)',
+            skills: [
+                'Desenvolvimento de software',
+                'Engenharia de sistemas',
+                'Projeto de soluções TI'
+            ],
             photo: 'https://media.licdn.com/dms/image/v2/C4D03AQHG31gM-LrVFQ/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1521233072160?e=1756339200&v=beta&t=TvpJvvnb_HGt_GjAEE7Hjyf4VeB0cSjeNfuBQl8BUGM',
-            description: 'Desenvolvedor fullstack apaixonado por criar experiências digitais excepcionais. Especialista em arquiteturas modernas que combinam performance, usabilidade e escalabilidade.',
+            description: 'Atua na área de tecnologia com a EPAM Systems, em Cracóvia, com forte background em engenharia de software e projetos corporativos.',
             contact: {
                 email: 'leopsantos@hotmail.com',
                 phone: '+55 (41) 99999-0007',
@@ -225,7 +266,7 @@ createNetworkBackground();
 
 // Enhanced category card interactions
 document.querySelectorAll('.category-card').forEach(card => {
-    card.addEventListener('click', function(e) {
+    card.addEventListener('click', function (e) {
         if (e.target.closest('.professionals-container')) return;
 
         const category = this.dataset.category;
@@ -268,7 +309,7 @@ function populateCategory(category) {
         const nameDiv = document.createElement('div');
         nameDiv.className = 'professional-name';
         nameDiv.textContent = professional.name;
-        nameDiv.addEventListener('click', function(e) {
+        nameDiv.addEventListener('click', function (e) {
             e.stopPropagation();
             openProfessionalModal(professional);
         });
@@ -459,7 +500,7 @@ window.addEventListener('scroll', debouncedScrollHandler);
 
 // Add loading animation for images
 document.querySelectorAll('img').forEach(img => {
-    img.addEventListener('load', function() {
+    img.addEventListener('load', function () {
         this.style.opacity = '1';
         this.style.transform = 'scale(1)';
     });
@@ -618,7 +659,7 @@ document.querySelectorAll('.cta-button').forEach(button => {
 
 // Track modal opens
 const originalOpenModal = openProfessionalModal;
-openProfessionalModal = function(professional) {
+openProfessionalModal = function (professional) {
     trackEvent('professional_modal_open', {
         professional_name: professional.name,
         professional_role: professional.role
@@ -628,7 +669,7 @@ openProfessionalModal = function(professional) {
 
 // Add error handling for images
 document.querySelectorAll('img').forEach(img => {
-    img.addEventListener('error', function() {
+    img.addEventListener('error', function () {
         // Replace with fallback image or placeholder
         this.src = 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgdmlld0JveD0iMCAwIDIwMCAyMDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSIyMDAiIGhlaWdodD0iMjAwIiBmaWxsPSIjMzMzIi8+Cjx0ZXh0IHg9IjEwMCIgeT0iMTEwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjOTk5IiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTYiPkltYWdlbTwvdGV4dD4KPC9zdmc+';
         this.style.opacity = '0.5';
