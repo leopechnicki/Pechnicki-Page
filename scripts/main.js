@@ -87,10 +87,14 @@ const categories = {
                 'Consultoria Técnica Ambiental',
                 'Licenciamento e pareceres técnicos'
             ],
-            photo: 'https://media.licdn.com/dms/image/v2/D4D03AQH4-MxIyvWVaA/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1724963709041?e=1756339200&v=beta&t=r63JuWZ0x3rFsI6C4NSNTNoWhwIrvp9J9EydXYrhVUU',
-            description: 'Engenheiro florestal formado pela UFPR, com especialização em direito ambiental e vasta atuação como perito judicial em casos ambientais.',
+            photo: '/assets/images/heroes/ian-pechnicki.jpeg',
+            description: 'Engenheiro florestal formado pela UFPR, com especialização em Direito Ambiental. Fundador e responsável técnico da SIEVE Engenharia, atua como perito judicial e consultor especializado em regularização ambiental, georreferenciamento e laudos técnicos para propriedades rurais e empreendimentos urbanos.',
             contact: {
-                linkedin: 'https://www.linkedin.com/in/iansuguimati/'
+                linkedin: 'https://www.linkedin.com/in/iansuguimati/',
+                website: {
+                    url: 'https://sieve.eng.br/',
+                    name: 'Sieve Engenharia'
+                }
             }
         },
         {
@@ -102,7 +106,6 @@ const categories = {
             description: 'Especialista em segurança do trabalho com foco na prevenção e criação de ambientes seguros. Desenvolve programas abrangentes que protegem vidas e otimizam operações industriais.',
             contact: {
                 email: 'jhessica@pechnicki.com',
-                phone: '+55 (41) 99999-0005',
                 linkedin: 'https://www.linkedin.com/in/jhessica-pechnicki-carneiro-b7b5b02a5/'
             }
         }
@@ -136,13 +139,50 @@ const categories = {
             description: 'Atua na área de tecnologia com a EPAM Systems, em Cracóvia, com forte background em engenharia de software e projetos corporativos.',
             contact: {
                 email: 'leopsantos@hotmail.com',
-                phone: '+55 (41) 99999-0007',
                 linkedin: 'https://www.linkedin.com/in/leonardo-pechnicki/',
-                github: 'https://github.com/leonardopechnicki'
+                github: 'https://github.com/leopechnicki'
             }
         }
     ]
 };
+
+const partners = {
+    "Sieve":
+        {
+            name: 'Sieve Engenaria',
+            url: 'https://sieve.eng.br/',
+            image: 'assets/images/partners/logo-sieve.webp'
+        },
+    "Integral_Physio":
+        {
+            name: 'Integral Physio',
+            url: 'https://www.linkedin.com/company/integral-physio/',
+            image: 'assets/images/partners/logo-integral_physio.jpg'
+        }
+}
+
+const partnersGrid = document.getElementById("partnersGrid");
+
+Object.values(partners).forEach(partner => {
+    const partnerDiv = document.createElement("div");
+    partnerDiv.className = "partner-logo";
+
+    const img = document.createElement("img");
+    img.src = partner.image;
+    img.alt = partner.name;
+
+    if (partner.url) {
+        const link = document.createElement("a");
+        link.href = partner.url;
+        link.target = "_blank";
+        link.appendChild(img);
+        partnerDiv.appendChild(link);
+    } else {
+        partnerDiv.appendChild(img);
+    }
+
+    partnersGrid.appendChild(partnerDiv);
+});
 
 // Theme management with localStorage
 const themeToggle = document.getElementById('themeToggle');
@@ -333,6 +373,7 @@ function openProfessionalModal(professional) {
                     <p>Pronto para trabalhar juntos? Vamos conversar!</p>
                     <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; margin-top: 1rem;">
                         ${professional.contact.email ? `<a href="mailto:${professional.contact.email}" class="contact-button">📧 Email</a>` : ''}
+                        ${professional.contact.website ? `<a href="${professional.contact.website.url}" class="contact-button" target="_blank">🌐 ${professional.contact.website.name}</a>` : ''}
                         ${professional.contact.phone ? `<a href="https://wa.me/${professional.contact.phone.replace(/\D/g, '')}" class="contact-button" target="_blank">📱 WhatsApp</a>` : ''}
                         ${professional.contact.linkedin ? `<a href="${professional.contact.linkedin}" class="contact-button" target="_blank">💼 LinkedIn</a>` : ''}
                         ${professional.contact.contactout ? `<a href="${professional.contact.contactout}" class="contact-button" target="_blank">💻 ContactOut</a>` : ''}
