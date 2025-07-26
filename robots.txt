@@ -1,0 +1,6 @@
+# Allow all bots
+User-agent: *
+Allow: /
+
+# Point to your sitemap
+Sitemap: https://pechnicki.com/sitemap.xml
